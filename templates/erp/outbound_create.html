@@ -1,0 +1,51 @@
+<!-- templates/tweet/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container timeline-container">
+        <div class="row">
+            <!-- 왼쪽 컬럼 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="/product-list/" class="list-group-item list-group-item-action"> 전체 상품 </a>
+                            <a href="/inventory/" class="list-group-item list-group-item-action"> 재고 확인 </a>
+                            <a href="/product-create/" class="list-group-item list-group-item-action"> 상품 등록 </a>
+                            <a href="/inbound-create/" class="list-group-item list-group-item-action"> 입고 </a>
+                            <a href="/outbound-create/" class="list-group-item list-group-item-action active" aria-current="true"> 출고 </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 오른 쪽 컬럼-->
+            <div class="col-md-7">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">상품 출고하기</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% if message == 1 %}
+                <script>
+                    window.alert("수량이 부족합니다!.")
+                </script>
+            {% endif %}
+            {% if message == 1 %}
+                <script>
+                    window.alert("가격과 수량이 맞지 않습니다!.")
+                </script>
+            {% endif %}
+
+            <hr>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    </div>
+{% endblock %}

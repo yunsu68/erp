@@ -1,0 +1,50 @@
+<!-- templates/tweet/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container timeline-container">
+        <div class="row">
+            <!-- 왼쪽 컬럼 -->
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="/product-list/" class="list-group-item list-group-item-action"> 상품 등록 </a>
+                            <a href="/inventory/" class="list-group-item list-group-item-action active" aria-current="true"> 재고 확인 </a>
+                            <a href="/product-create/" class="list-group-item list-group-item-action"> 상품 등록 </a>
+                            <a href="/inbound-create/" class="list-group-item list-group-item-action"> 입고 </a>
+                            <a href="/outbound-create/" class="list-group-item list-group-item-action"> 출고 </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 오른 쪽 컬럼-->
+            <div class="col-md-7">
+
+                <hr>
+                <!-- 상품들이 나오는 곳 -->
+                <div class="row">
+                    {% for pr in product %}
+                        <div class="col-md-12 mb-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h6 class="mt-0">상품 코드 : {{ pr.code }}</h6>
+                                            <h6 class="mt-0">재고 현황 : {{ pr.inventory.total_inventory }}</h6>
+                                            <h6 class="mt-0">총 가격 : {{ pr.inventory.total_cost }}</h6>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}
